@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 
+
 var server = Axios.create({
   baseURL: "//localhost:5000/api"
 })
