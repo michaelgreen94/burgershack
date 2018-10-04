@@ -41,10 +41,11 @@ namespace burgershack
          .AllowCredentials();
         });
       });
+      services.AddMvc();
+      
       services.AddTransient<IDbConnection>(x => CreateDBContext());
       services.AddTransient<BurgersRepository>();
       services.AddTransient<SmoothieRepository>();
-      services.AddMvc();
       // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
     }
 
