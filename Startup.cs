@@ -34,7 +34,15 @@ namespace burgershack
       //Add user auth through JWT
 
       services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-      .AddCookie();
+      .AddCookie(options =>
+      {
+        options.LoginPath = "/Account/Login";
+        options.Events.OnRedirectToLogin = (context) =>
+        {
+          context.Response.StatusCode = 401;
+          return Task.CompletedTask;
+        };
+      });
 
       services.AddCors(options =>
       {
@@ -76,7 +84,7 @@ namespace burgershack
       {
         app.UseHsts();
       }
-
+      app.UseAuthentication();
       app.UseDefaultFiles();
       app.UseStaticFiles();
       app.UseMvc();
