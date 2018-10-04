@@ -41,7 +41,7 @@ namespace burgershack.Repositories
         Username = creds.Username,
         Email = creds.Email,
         Hash = null,
-        UserId = id
+        Id = id
       };
     }
 
@@ -61,6 +61,19 @@ namespace burgershack.Repositories
       return user;
 
     }
+
+    internal User GetUserById(string id)
+    {
+      User user = _db.Query<User>(@"
+      SELECT * FROM users WHERE id = @id
+      ", new { id }).FirstOrDefault();
+      if (user != null)
+      {
+        user.Hash = null;
+      }
+      return user;
+    }
+
     //Update (U)
     //Change Pass (U)
     //Delete (D)

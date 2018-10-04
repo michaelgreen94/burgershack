@@ -29,7 +29,7 @@ namespace burgershack.Models
 
   public class User
   {
-    public string UserId { get; set; }
+    public string Id { get; set; }
     public bool Active { get; set; } = true;
     public string Username { get; set; }
     [Required]
@@ -45,7 +45,7 @@ namespace burgershack.Models
     {
       var claims = new List<Claim> {
         new Claim(ClaimTypes.Email, Email),
-        new Claim(ClaimTypes.Thumbprint, UserId) //req.sessions.uid = id
+        new Claim(ClaimTypes.Name, Id) //req.sessions.uid = id
       };
       var UserIdentity = new ClaimsIdentity(claims, "login");
       _principal = new ClaimsPrincipal(UserIdentity);
