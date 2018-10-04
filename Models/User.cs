@@ -15,9 +15,6 @@ namespace burgershack.Models
     [EmailAddress]
     public string Email { get; set; }
 
-    public User()
-    {
-      new User() { };
-    }
+    public User() { }
   }
 }
